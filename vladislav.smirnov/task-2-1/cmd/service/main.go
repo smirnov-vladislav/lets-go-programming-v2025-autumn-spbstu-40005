@@ -43,11 +43,11 @@ switch oper {
   return nil
 }
 
-func (tp *TemperatureProcessor) getOptimalTemp() int {
+func (tp *TemperatureProcessor) getOptimalTemp() (int, error) {
   if tp.upper < tp.lower {
-    return -1
+    return 0, errNotExist
   }
-  return tp.lower
+  return tp.lower, nil
 }
 
 func main() {
@@ -57,9 +57,9 @@ func main() {
     return
   }
 
-  processor := NewTemperatureProcessor()
-
   for range departmentCount {
+    processor := NewTemperatureProcessor()
+
     var employeeCount int
     if _, err := fmt.Scan(&employeeCount); err != nil {
       fmt.Println("error reading: ", err)
@@ -81,8 +81,11 @@ func main() {
         return
       }
 
-      result := processor.getOptimalTemp()
-      fmt.Println(result)
+      if res, err := processor.getOptimalTemp(); err != nil {
+        fmt.Println(-1)
+      } else {
+        fmt.Println(res)
+      }
     }
   }
 }
