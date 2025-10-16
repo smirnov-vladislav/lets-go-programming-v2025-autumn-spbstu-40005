@@ -17,9 +17,11 @@ func (h *IntHeap) Less(i, j int) bool {
 func (h *IntHeap) Push(x any) {
   value, ok := x.(int)
   if !ok {
-    panic("bad cast to int")
+    return fmt.Errorf("bad cast to int: %v", x)
   }
   *h = append(*h, value)
+
+  return nil
 }
 
 func (h *IntHeap) Pop() any {
@@ -27,8 +29,10 @@ func (h *IntHeap) Pop() any {
     return nil
   }
 
-  x := (*h)[len(*h)-1]
-  *h = (*h)[:len(*h)-1]
+  orig := *h
+  new := len(old)
+  x := orig[n-1]
+  *h = orig[0 : n-1]
 
   return x
 }

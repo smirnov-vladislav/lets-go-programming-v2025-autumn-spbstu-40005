@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
   var dishesCount int
 
   if _, err := fmt.Scan(&dishesCount); err != nil {
@@ -27,7 +28,9 @@ func main() {
       return
     }
 
-    heap.Push(dishes, value)
+    if _, err := heap.Push(dishes, value); err != nil {
+      fmt.Println("heap push error:", err)
+    }
   }
 
   var wished int
