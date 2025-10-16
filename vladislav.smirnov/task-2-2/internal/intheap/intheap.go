@@ -19,6 +19,7 @@ func (h *IntHeap) Push(x any) {
 	if !ok {
 		panic("Push expects int")
 	}
+
 	*h = append(*h, value)
 }
 
