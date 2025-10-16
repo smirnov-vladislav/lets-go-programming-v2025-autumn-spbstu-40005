@@ -3,34 +3,34 @@ package intheap
 type IntHeap []int
 
 func (h *IntHeap) Len() int {
-  return len(*h)
+	return len(*h)
 }
 
 func (h *IntHeap) Swap(i, j int) {
-  (*h)[i], (*h)[j] = (*h)[j], (*h)[i]
+	(*h)[i], (*h)[j] = (*h)[j], (*h)[i]
 }
 
 func (h *IntHeap) Less(i, j int) bool {
-  return (*h)[i] > (*h)[j]
+	return (*h)[i] > (*h)[j]
 }
 
 func (h *IntHeap) Push(x any) {
-  value, ok := x.(int)
-  if !ok {
-    panic("Push expects int")
-  }
-  *h = append(*h, value)
+	value, ok := x.(int)
+	if !ok {
+		panic("Push expects int")
+	}
+	*h = append(*h, value)
 }
 
 func (h *IntHeap) Pop() any {
-  if h.Len() == 0 {
-    return nil
-  }
+	if h.Len() == 0 {
+		return nil
+	}
 
-  orig := *h
-  n := len(orig)
-  x := orig[n-1]
-  *h = orig[0 : n-1]
+	orig := *h
+	n := len(orig)
+	x := orig[n-1]
+	*h = orig[0 : n-1]
 
-  return x
+	return x
 }

@@ -1,64 +1,64 @@
 package main
 
 import (
-  "fmt"
-  "container/heap"
+	"container/heap"
+	"fmt"
 
-  "github.com/smirnov-vladislav/task-2-2/internal/intheap"
+	"github.com/smirnov-vladislav/task-2-2/internal/intheap"
 )
 
 func main() {
-  defer func() {
-    if r := recover(); r != nil {
-      fmt.Println("Recovered from panic:", r)
-    }
-  }()
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered from panic:", r)
+		}
+	}()
 
-  var dishesCount int
+	var dishesCount int
 
-  if _, err := fmt.Scan(&dishesCount); err != nil {
-    fmt.Printf("error scanning count of dishes: %v\n", err)
+	if _, err := fmt.Scan(&dishesCount); err != nil {
+		fmt.Printf("error scanning count of dishes: %v\n", err)
 
-    return
-  }
+		return
+	}
 
-  dishes := &intheap.IntHeap{}
-  heap.Init(dishes)
+	dishes := &intheap.IntHeap{}
+	heap.Init(dishes)
 
-  for range dishesCount {
-    var value int
-    if _, err := fmt.Scan(&value); err != nil {
-      fmt.Printf("error scanning value of dish: %v\n", err)
+	for range dishesCount {
+		var value int
+		if _, err := fmt.Scan(&value); err != nil {
+			fmt.Printf("error scanning value of dish: %v\n", err)
 
-      return
-    }
+			return
+		}
 
-    heap.Push(dishes, value)
-  }
+		heap.Push(dishes, value)
+	}
 
-  var wished int
+	var wished int
 
-  if _, err := fmt.Scan(&wished); err != nil {
-    fmt.Printf("error scanning wished dish: %v\n", err)
+	if _, err := fmt.Scan(&wished); err != nil {
+		fmt.Printf("error scanning wished dish: %v\n", err)
 
-    return
-  }
+		return
+	}
 
-  for range wished - 1 {
-    if heap.Pop(dishes) == nil {
-      fmt.Printf("error: heap is empty")
+	for range wished - 1 {
+		if heap.Pop(dishes) == nil {
+			fmt.Printf("error: heap is empty")
 
-      return
-    }
-  }
+			return
+		}
+	}
 
-  bestDish := heap.Pop(dishes)
+	bestDish := heap.Pop(dishes)
 
-  if bestDish == nil {
-    fmt.Printf("error: heap is empty")
+	if bestDish == nil {
+		fmt.Printf("error: heap is empty")
 
-    return
-  }
+		return
+	}
 
-  fmt.Println(bestDish)
+	fmt.Println(bestDish)
 }
