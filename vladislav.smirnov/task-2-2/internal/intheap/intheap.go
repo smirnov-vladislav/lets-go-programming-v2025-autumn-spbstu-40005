@@ -25,7 +25,7 @@ func (h *IntHeap) Push(x any) {
 
 func (h *IntHeap) Pop() any {
 	if h.Len() == 0 {
-		return nil
+		panic("Pop called on empty heap")
 	}
 
 	orig := *h
