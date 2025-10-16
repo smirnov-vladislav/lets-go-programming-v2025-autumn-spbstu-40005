@@ -45,20 +45,9 @@ func main() {
 	}
 
 	for range wished - 1 {
-		if heap.Pop(dishes) == nil {
-			fmt.Printf("error: heap is empty")
-
-			return
-		}
-	}
+		heap.Pop(dishes)
+        }
 
 	bestDish := heap.Pop(dishes)
-
-	if bestDish == nil {
-		fmt.Printf("error: heap is empty")
-
-		return
-	}
-
 	fmt.Println(bestDish)
 }
