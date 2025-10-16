@@ -46,7 +46,7 @@ func main() {
 
 	for range wished - 1 {
 		heap.Pop(dishes)
-        }
+	}
 
 	bestDish := heap.Pop(dishes)
 	fmt.Println(bestDish)
