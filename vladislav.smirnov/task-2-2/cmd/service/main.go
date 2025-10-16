@@ -8,6 +8,11 @@ import (
 )
 
 func main() {
+  defer func() {
+    if r := recover(); r != nil {
+      fmt.Println("Recovered from panic:", r)
+    }
+  }()
 
   var dishesCount int
 
@@ -28,12 +33,11 @@ func main() {
       return
     }
 
-    if _, err := heap.Push(dishes, value); err != nil {
-      fmt.Println("heap push error:", err)
-    }
+    heap.Push(dishes, value)
   }
 
   var wished int
+
   if _, err := fmt.Scan(&wished); err != nil {
     fmt.Printf("error scanning wished dish: %v\n", err)
 
@@ -49,6 +53,7 @@ func main() {
   }
 
   bestDish := heap.Pop(dishes)
+
   if bestDish == nil {
     fmt.Printf("error: heap is empty")
 
