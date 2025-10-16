@@ -27,8 +27,8 @@ func NewTemperatureProcessor() *TemperatureProcessor {
   }
 }
 
-func (tp *TemperatureProcessor ) Apply(oper string, value int) error {
-switch oper {
+func (tp *TemperatureProcessor) Apply(oper string, value int) error {
+  switch oper {
   case "<=":
     if value < tp.upper {
       tp.upper = value
@@ -40,6 +40,7 @@ switch oper {
   default:
     return errOperator
   }
+
   return nil
 }
 
@@ -47,6 +48,7 @@ func (tp *TemperatureProcessor) getOptimalTemp() (int, error) {
   if tp.upper < tp.lower {
     return 0, errNotExist
   }
+
   return tp.lower, nil
 }
 
@@ -54,6 +56,7 @@ func main() {
   var departmentCount int
   if _, err := fmt.Scan(&departmentCount); err != nil {
     fmt.Println("error reading: ", err)
+
     return
   }
 
@@ -63,21 +66,25 @@ func main() {
     var employeeCount int
     if _, err := fmt.Scan(&employeeCount); err != nil {
       fmt.Println("error reading: ", err)
+
       return
     }
+
     for range employeeCount {
       var (
-        oper string
+        oper  string
         value int
       )
 
       if _, err := fmt.Scan(&oper, &value); err != nil {
         fmt.Println("error reading: ", err)
+
         return
       }
 
       if err := processor.Apply(oper, value); err != nil {
         fmt.Println("error: ", err)
+
         return
       }
 
