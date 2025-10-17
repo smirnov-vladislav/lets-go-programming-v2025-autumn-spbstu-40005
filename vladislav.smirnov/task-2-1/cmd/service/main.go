@@ -55,7 +55,7 @@ func (tp *TemperatureProcessor) getOptimalTemp() (int, error) {
 func main() {
 	var departmentCount int
 	if _, err := fmt.Scan(&departmentCount); err != nil {
-		fmt.Println("error reading: ", err)
+		fmt.Println("error reading department count: ", err)
 
 		return
 	}
@@ -65,7 +65,7 @@ func main() {
 
 		var employeeCount int
 		if _, err := fmt.Scan(&employeeCount); err != nil {
-			fmt.Println("error reading: ", err)
+			fmt.Println("error reading employee count: ", err)
 
 			return
 		}
@@ -77,13 +77,13 @@ func main() {
 			)
 
 			if _, err := fmt.Scan(&oper, &value); err != nil {
-				fmt.Println("error reading: ", err)
+				fmt.Println("error reading new temperature: ", err)
 
 				return
 			}
 
 			if err := processor.Apply(oper, value); err != nil {
-				fmt.Println("error: ", err)
+				fmt.Println("error applying operation: ", err)
 
 				return
 			}
