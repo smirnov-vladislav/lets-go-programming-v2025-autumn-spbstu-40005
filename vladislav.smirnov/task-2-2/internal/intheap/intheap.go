@@ -7,9 +7,10 @@ func (h *IntHeap) Len() int {
 }
 
 func (h *IntHeap) Swap(i, j int) {
-        if i < 0 || j < 0 || i >= h.Len() || j >= h.Len() {
-        	panic("Swap index is out of range")
-        }
+	if i < 0 || j < 0 || i >= h.Len() || j >= h.Len() {
+		panic("Swap index is out of range")
+	}
+
 	(*h)[i], (*h)[j] = (*h)[j], (*h)[i]
 }
 
