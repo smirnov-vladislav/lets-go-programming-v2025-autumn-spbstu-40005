@@ -44,6 +44,12 @@ func main() {
 		return
 	}
 
+	if wished <= 0 || wished > dishes.Len() {
+		fmt.Println("error: wished dish number is out of range")
+
+		return
+	}
+
 	for range wished - 1 {
 		heap.Pop(dishes)
 	}
