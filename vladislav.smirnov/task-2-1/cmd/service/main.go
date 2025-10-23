@@ -27,7 +27,7 @@ func NewTemperatureProcessor() *TemperatureProcessor {
 	}
 }
 
-func (tp *TemperatureProcessor) Apply(oper string, value int) error {
+func (tp *TemperatureProcessor) apply(oper string, value int) error {
 	switch oper {
 	case "<=":
 		if value < tp.upper {
