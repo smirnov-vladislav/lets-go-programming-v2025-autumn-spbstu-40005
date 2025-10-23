@@ -55,5 +55,10 @@ func main() {
 	}
 
 	bestDish := heap.Pop(dishes)
+	if bestDish == nil {
+		fmt.Println("No best dish available")
+
+		return
+	}
 	fmt.Println(bestDish)
 }
