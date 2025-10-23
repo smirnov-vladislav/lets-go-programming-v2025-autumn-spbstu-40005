@@ -82,7 +82,7 @@ func main() {
 				return
 			}
 
-			if err := processor.Apply(oper, value); err != nil {
+			if err := processor.apply(oper, value); err != nil {
 				fmt.Println("error applying operation: ", err)
 
 				return
