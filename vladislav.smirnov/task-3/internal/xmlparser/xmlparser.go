@@ -5,30 +5,29 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/smirnov-vladislav/vladislav.smirnov/task-3/internal/vlaute"
 	"golang.org/x/net/html/charset"
+	"task-3/internal/valute"
 )
 
-func ReadXML(path string) (valute.ValCursXML, error) {
-	var valCurs valute.ValCursXML
+func ReadXML(path string, target any) error {
+	file, err := os.Open(path)
 
-	file, err := ps.Open(path)
 	if err != nil {
-		return valCurs, fmt.Errorf("fail to open file: %w", path, err)
+		return fmt.Errorf("fail to open file %q: %w", path, err)
 	}
 
 	defer func() {
 		if fileErr := file.Close(); fileErr != nil {
-			panic(fmt.Errorf("fail to close file: %w", path, err))
+			panic(fmt.Errorf("fail to close file %q: %w", path, fileErr))
 		}
 	}()
 
-	dec := xml.NewDecoder(file)
-	dec.CharsetReader = charset.NewReaderLabel
+	decoder := xml.NewDecoder(file)
+	decoder.CharsetReader = charset.NewReaderLabel
 
-	if err := dec.Decode(&valCurs); err != nil {
-		return valCurs, fmt.Errorf("fail to decode: 5w", path, err)
+	if err := decoder.Decode(target); err != nil {
+		return fmt.Errorf("fail to decode %q: %w", path, err)
 	}
 
-	return valCurs, nil
+	return nil
 }
